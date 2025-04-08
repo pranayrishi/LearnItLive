@@ -231,6 +231,13 @@ def index():
               background: linear-gradient(to right, #36d1dc, #5b86e5);
               font-family: Arial, sans-serif;
           }
+          h1 {
+            font-size: 60px;
+            font-weight: bold;
+            margin: 30px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Optional: adds a subtle shadow */
+            letter-spacing: 1px; /* Optional: spaces out the letters slightly */
+          }
           .left-side {
               flex: 1;
               color: white;
@@ -252,6 +259,7 @@ def index():
               justify-content: center;
               align-items: center;
               text-align: center;
+              margin-bottom:10px;
           }
           .bottom-right {
               flex: 1;
@@ -266,8 +274,8 @@ def index():
               background-color: white;
               border-radius: 8px;
               padding: 10px;
-              width: 100%;
-              height: 120%;
+              width: 90%;
+              height: 100%;
               overflow-y: auto;
           }
           .controls {
@@ -300,15 +308,15 @@ def index():
                height: 200px;
                border-radius: 50%;
                background-color: rgba(255, 255, 255, 0.5);
-               margin-top: -400px;
-               margin-left: 30px;
+               margin: 30px 0; /*Originally -400px*/
+               margin-left: 50px;
                animation: wave 2s infinite;
                opacity: 0; /* Initially invisible */
                animation-play-state: paused; /* Animation is paused initially */
            }
           .media-container {
-              width: 320px;
-              height: 240px;
+              width: 620px;
+              height: 360px;
               background-color: #000;
               border-radius: 8px;
               overflow: hidden;
@@ -437,7 +445,7 @@ def index():
 
                           // Update video element with cache-busting timestamp
                           const videoSrc = document.getElementById('videoSrc');
-                          videoSrc.src = `{{ url_for('static', filename='final_video.mp4') }}?t=${Date.now()}`;
+                          videoSrc.src = `{{ url_for('static', filename='final_video.mp4') }}?t=${Date.now()}`; // removed static
 
 
 
@@ -783,4 +791,4 @@ if __name__ == '__main__':
     signal.signal(signal.SIGTERM, lambda s, f: cleanup())
 
     # Use threaded=False to avoid more logging issues
-    app.run(debug=False, host='0.0.0.0', port=5000, use_reloader=False, threaded=True)
+    app.run(debug=False, host='0.0.0.0', port=8000, use_reloader=False, threaded=True)
